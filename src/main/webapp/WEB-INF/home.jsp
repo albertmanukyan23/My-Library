@@ -12,7 +12,7 @@
 </head>
 <body>
 <% User user = (User) session.getAttribute("user"); %>
-Welcome <%=user.getName()%> <%=user.getSurname()%>
+Welcome <%=user.getName()%> <%=user.getSurname()%><br>
 <a href="/author">Author </a>|
 <a href="/books"> Book </a>|
 <a href="/createAuthor">Create Author</a>|

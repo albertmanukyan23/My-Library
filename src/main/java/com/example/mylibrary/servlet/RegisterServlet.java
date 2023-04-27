@@ -15,7 +15,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
-        User user = USER_MANAGER.getByEmail(email);
+        User user = USER_MANAGER.getEmail(email);
         if (user == null) {
             USER_MANAGER.save(User.builder()
                     .name(req.getParameter("name"))

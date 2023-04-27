@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        User byEmailAndPassword = USER_MANAGER.getByEmailAndPassword(email, password);
+        User byEmailAndPassword = USER_MANAGER.getEmailPassword(email, password);
         HttpSession session = req.getSession();
         if (byEmailAndPassword == null) {
             session.setAttribute("message", "Login or password is incorrect");
