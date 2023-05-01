@@ -17,7 +17,7 @@
 <a href="/books"> Back </a>
 
 <h2>Add Book</h2>
-<form action="/createBook" method="post">
+<form action="/createBook" method="post" enctype="multipart/form-data">
     Title: <input name="title" type="text"><br>
     Description: <input name="description" type="text"><br>
     Price: <input name="price" type="text"><br>
@@ -28,6 +28,8 @@
         </option>
         <% }%>
     </select>
+    Image for book :
+    <input type="file" name="profilePic"><br>
     <input type="submit" value="Add">
 </form>
 

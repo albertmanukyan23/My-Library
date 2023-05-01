@@ -15,5 +15,6 @@ import lombok.NoArgsConstructor;
         private String surname;
         private String email;
         private String password;
+        private UserType userType;
     }
 

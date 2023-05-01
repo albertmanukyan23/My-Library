@@ -1,5 +1,7 @@
 <%@ page import="com.example.mylibrary.model.Author" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.mylibrary.model.User" %>
+<%@ page import="com.example.mylibrary.model.UserType" %><%--
   Created by IntelliJ IDEA.
   User: Albert
   Date: 27/04/2023
@@ -12,6 +14,8 @@
     <title>Authors</title>
 </head>
 <% List<Author> authors = (List<Author>) request.getAttribute("allAuthors");%>
+<% User user = (User) request.getSession().getAttribute("user");%>
+
 <style>
   table, th, td {
     border: 1px solid;
@@ -29,7 +33,10 @@
     <th>surname</th>
     <th>email</th>
     <th>age</th>
+    <% if(user.getUserType() == UserType.ADMIN){%>
     <th>Delete/Update</th>
+    <%};%>
+
   </tr>
   <% if (authors != null || !authors.isEmpty()) {%>
   <% for (Author author : authors) {%>
@@ -44,10 +51,14 @@
     </td>
     <td><%=author.getAge()%>
     </td>
-    <td><a href="/deleteAuthor?id=<%= author.getId()%>">Delete </a>/ <a
+    <% if(user.getUserType() == UserType.ADMIN){%>
+    <td>
+      <a href="/deleteAuthor?id=<%= author.getId()%>">Delete </a>/ <a
             href="/updateAuthor?id=<%=author.getId()%>">Update </a></td>
     </td>
   </tr>
+    <%};%>
+
   <% }
   }%>
 

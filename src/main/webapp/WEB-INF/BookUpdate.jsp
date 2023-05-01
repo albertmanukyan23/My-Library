@@ -18,7 +18,7 @@
 <a href="/books"> Back </a>
 
 <h2>Edit Book</h2>
-<form action="/updateBook" method="post">
+<form action="/updateBook" method="post" enctype="multipart/form-data">
   <input name="id" type="hidden" value="<%=book.getId()%>"><br>
   Title: <input name="title" type="text" value="<%=book.getTitle()%>"><br>
   Description: <input name="description" type="text" value="<%=book.getDescription()%>"><br>
@@ -29,6 +29,8 @@
     <option value="<%=author.getId()%>" ><%= author.getName() %></option>
     <% }%>
   </select>
+  Image for book :
+  <input type="file" name="profilePic"><br>
   <input type="submit" value="Update">
 </form>
 

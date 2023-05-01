@@ -1,4 +1,5 @@
-<%@ page import="com.example.mylibrary.model.User" %><%--
+<%@ page import="com.example.mylibrary.model.User" %>
+<%@ page import="com.example.mylibrary.model.UserType" %><%--
   Created by IntelliJ IDEA.
   User: Albert
   Date: 27/04/2023
@@ -15,10 +16,10 @@
 Welcome <%=user.getName()%> <%=user.getSurname()%><br>
 <a href="/author">Author </a>|
 <a href="/books"> Book </a>|
-<a href="/createAuthor">Create Author</a>|
+    <% if(user.getUserType() == UserType.ADMIN){%>
+    <a href="/createAuthor">Create Author</a>|
+    <%};%>
 <a href="/createBook">Create Book</a>|
 <a href="/logout">logout</a> <br>
-</body>
-
 </body>
 </html>
