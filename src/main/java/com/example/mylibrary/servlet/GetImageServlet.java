@@ -20,7 +20,6 @@ public class GetImageServlet extends HttpServlet {
         File imageFile = new File(GetSharedConstants.UPLOAD_FOLDER + picName);
         if (imageFile.exists()) {
             try (FileInputStream inStream = new FileInputStream(imageFile)) {
-
                 resp.setContentType("image/jpeg");
                 resp.setContentLength((int) imageFile.length());
                 OutputStream outStream = resp.getOutputStream();

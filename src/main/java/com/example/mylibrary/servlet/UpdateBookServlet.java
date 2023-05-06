@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -51,6 +52,15 @@ public class UpdateBookServlet extends HttpServlet {
         int price =  Integer.parseInt(req.getParameter("price"));
         int authorId = Integer.parseInt(req.getParameter("author"));
         Author author = AUTHOR_MANAGER.getById(authorId);
+        Book book = BOOK_MANAGER.getById(id);
+        if (book != null){
+            if (book.getPicName() != null){
+                File file = new File(GetSharedConstants.UPLOAD_FOLDER + book.getPicName());
+                if (file.exists()) {
+                    file.delete();
+                }
+            }
+        }
         Part pic = req.getPart("profilePic");
         String picName = null;
         if (pic != null || pic.getSize() > 0) {
@@ -61,8 +71,8 @@ public class UpdateBookServlet extends HttpServlet {
         if (user == null){
             resp.sendRedirect("index.jsp");
         }
-        Book book = new Book(id,title,description,price,author,user,picName);
-        BOOK_MANAGER.update(book);
+        Book newBook = new Book(id,title,description,price,author,user,picName);
+        BOOK_MANAGER.update(newBook);
         resp.sendRedirect("/books");
     }
 }
